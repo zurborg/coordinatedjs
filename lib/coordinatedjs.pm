@@ -20,6 +20,15 @@ sub nowjs {
     $_;
 };
 
+sub nowphp {
+    content_type 'application/php';
+    local $_ = "$nowminjs";
+    my $expr = quotemeta '%UNIXTIME%';
+    my $time = '<?php printf("%0.03f", microtime(true)); ?>';
+    s{$expr}{$time}e;
+    $_;
+}
+
 my $momentminjs = 'moment/min/moment.min.js';
 if (open my $fh, $momentminjs) {
     $momentminjs = join '' => <$fh>;
@@ -43,6 +52,7 @@ sub full_with_localesjs {
 };
 
 get '/now.js' => \&nowjs;
+get '/now.php' => \&nowphp;
 get '/full.js' => \&fulljs;
 get '/full-with-locales.js' => \&full_with_localesjs;
 get '/' => sub { template 'index' };
