@@ -59,6 +59,9 @@
               <li><code>//coordinatedjs.com/full.js</code> Provides moment.min.js (latest version) and coordinated.js</li>
               <li><code>//coordinatedjs.com/full-with-locales.js</code> Provides moment-with-locales.min.js (latest version) and coordinated.js</li>
             </ul>
+            <p>
+              If you are using PHP, I have <a href="//coordinatedjs.com/now.php" target="_blank">a very small script for you.</a>. Its recommended for self-hosting purpose and does not need any additional libraries. It should work out of the box.
+            </p>
           </div>
           <div class="inner">
             <h1>Reliability and limitations</h1>
