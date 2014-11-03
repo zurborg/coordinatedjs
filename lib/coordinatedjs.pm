@@ -17,7 +17,6 @@ sub nowjs {
     my $expr = quotemeta '%UNIXTIME%';
     my $time = sprintf '%0.03f' => Time::HiRes::time;
     s{$expr}{$time}e;
-    sleep 1;
     $_;
 };
 
