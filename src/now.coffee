@@ -2,9 +2,18 @@
 	if !@moment?
 		console?.error? 'moment.js not available'
 	else
-		servertime = moment('%UNIXTIME%', 'X')
+		poffset = 0
+		if window.performance?
+			poffset -= window.performance.now()
+		unixtime = parseFloat('%UNIXTIME%') * 1000;
+		console.log "unixtime = #{unixtime}, poffset = #{poffset}"
+		unixtime -= poffset
+		servertime = moment(unixtime)
 		clienttime = moment()
-		offset = moment(servertime).diff clienttime, 'seconds'
+		offset = moment(servertime).diff clienttime, 'milliseconds'
 		@$moment = () ->
-			moment().add 'seconds', offset
+			moment().add offset, 'milliseconds'
+		@$moment.utc = () ->
+			moment.utc().add offset, 'milliseconds'
+		@$moment.offset = offset
 ).call window
