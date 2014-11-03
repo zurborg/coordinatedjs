@@ -6,7 +6,7 @@
 
 .SECONDARY:
 
-all: now.min.js
+all: now.min.js app.min.js
 
 clean:
 	-git clean -xdf .
