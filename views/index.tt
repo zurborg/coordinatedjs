@@ -51,7 +51,9 @@
           </div>
           <div class="inner">
             <h1>Available services</h1>
-            coordinatedjs.com provides three services free for you:
+            <p>
+              coordinatedjs.com provides three services free for you:
+            </p>
             <ul style="text-align: left">
               <li><code>//coordinatedjs.com/now.js</code> Requires moment.js.</li>
               <li><code>//coordinatedjs.com/full.js</code> Provides moment.min.js (latest version) and coordinated.js</li>
