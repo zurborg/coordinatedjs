@@ -21,10 +21,10 @@
           </div>
           <div class="inner">
             <p>
-              Time on server is now:<br /><strong class="server-time bold">...</strong>
+              Time in your browser is now:<br /><strong class="client-time bold">...</strong>
             </p>
             <p>
-              Time in your browser is now:<br /><strong class="client-time bold">...</strong>
+              Time on server is now:<br /><strong class="server-time bold">...</strong>
             </p>
             <p>
               Coordinated world time (UTC) is now:<br /><strong class="utc-time bold">...</strong>
