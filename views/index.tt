@@ -92,7 +92,7 @@
           </div>
           <div class="mastfoot">
             <div class="inner">
-              <p>&copy 2014 David Zurborg. <a href="/impress.txt">Impress</a>. Template by <a href="//twitter.com/mdo" target="_blank">@mdo</a>.</p>
+              <p>&copy 2014 David Zurborg. <a href="/impress.txt">Impress</a>. Template by <a href="//twitter.com/mdo" target="_blank">@mdo</a>. Proudly made with <a href="//perldancer.org/" target="_blank">Dancer</a>.</p>
             </div>
           </div>
         </div>
