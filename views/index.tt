@@ -1,148 +1,102 @@
-  
-<!-- 
-    Credit goes to the Ruby on Rails team for this page 
-    has been heavily based on the default Rails page that is 
-    built with a scaffolded application.
-
-    Thanks a lot to them for their work.
-
-    See Ruby on Rails if you want a kickass framework in Ruby:
-    http://www.rubyonrails.org/
--->
-
-<div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Join the community</h3>
-            <ul class="links">
-
-              <li><a href="http://perldancer.org/">PerlDancer</a></li>
-              <li><a href="http://twitter.com/PerlDancer/">Official Twitter</a></li>
-              <li><a href="https://github.com/PerlDancer/Dancer/">GitHub Community</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <h3>Browse the documentation</h3>
-
-            <ul class="links">
-              <li><a
-              href="https://metacpan.org/pod/Dancer::Introduction">Introduction</a></li>
-              <li><a href="https://metacpan.org/pod/Dancer::Cookbook">Cookbook</a></li>
-              <li><a href="https://metacpan.org/pod/Dancer::Deployment">Deployment Guide</a></li>
-              <li><a
-              href="https://metacpan.org/pod/Dancer::Tutorial"
-              title="a tutorial to build a small blog engine with Dancer">Tutorial</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <h3>Your application's environment</h3>
-
-            <ul>
-                <li>Location: <code><% settings.appdir %></code></li>
-                <li>Template engine: <code><% settings.template %></code></li>
-                <li>Logger: <code><% settings.logger %></code></li>
-                <li>Environment: <code><% settings.environment %></code></li>
-            </ul>
-
-          </li>
-        </ul>
-
-      </div>
-
-      <div id="content">
-        <div id="header">
-          <h1>Perl is dancing</h1>
-          <h2>You&rsquo;ve joined the dance floor!</h2>
-        </div>
-
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get dancing:</h2>
-                    
-          <h3><a href="#" id="about_env_link">About your application's environment</a></h3>
-
-          <div id="about-content" style="display: none;">
-            <table>
-                <tbody>
-                <tr>
-                    <td>Perl version</td>
-                    <td><tt><% perl_version %></tt></td>
-                </tr>
-                <tr>
-                    <td>Dancer version</td>
-                    <td><tt><% dancer_version %></tt></td>
-                </tr>
-                <tr>
-                    <td>Backend</td>
-                    <td><tt><% settings.apphandler %></tt></td>
-                </tr>
-                <tr>
-                    <td>Appdir</td>
-                    <td><tt><% settings.appdir %></tt></td>
-                </tr>
-                <tr>
-                    <td>Template engine</td>
-                    <td><tt><% settings.template %></tt></td>
-                </tr>
-                <tr>
-                    <td>Logger engine</td>
-                    <td><tt><% settings.logger %></tt></td>
-                </tr>
-                <tr>
-                    <td>Running environment</td>
-                    <td><tt><% settings.environment %></tt></td>
-                </tr>
-                </tbody>
-            </table>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coordinated time service for moment.js">
+    <meta name="author" content="David Zurborg">
+    <link rel="icon" href="/favicon.ico">
+    <title>coordinated.js</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading">coordinated.js</h1>
+            <p class="lead">coordinated.js is a coordinated time service based on moment.js - to get server-time on client-side</p>
           </div>
-
-    <script type="text/javascript">
-    $('#about_env_link').click(function() {
-        $('#about-content').slideToggle('fast', function() {
-            // ok
-        });
-        return( false );
-    });
-    </script>
-
-
-          <ol>          
-            <li>
-              <h2>Tune your application</h2>
-
-              <p>
-              Your application is configured via a global configuration file,
-              <tt>config.yml</tt> and an "environment" configuration file,
-              <tt>environments/development.yml</tt>. Edit those files if you
-              want to change the settings of your application.
-              </p>
-            </li>
-
-            <li>
-              <h2>Add your own routes</h2>
-
-              <p>
-              The default route that displays this page can be removed,
-              it's just here to help you get started. The template used to
-              generate this content is located in 
-              <code>views/index.tt</code>.
-              You can add some routes to <tt>lib/coordinatedjs.pm</tt>. 
-              </p>
-            </li>
-
-            <li>
-                <h2>Enjoy web development again</h2>
-
-                <p>
-                Once you've made your changes, restart your standalone server
-                (bin/app.pl) and you're ready to test your web application.
-                </p>
-            </li>
-
-          </ol>
+          <div class="inner">
+            <p>
+              Time on server is now:<br /><strong class="server-time bold">...</strong>
+            </p>
+            <p>
+              Time in your browser is now:<br /><strong class="client-time bold">...</strong>
+            </p>
+            <p>
+              Coordinated world time (UTC) is now:<br /><strong class="utc-time bold">...</strong>
+            </p>
+            <p>
+              Your offset in milli-seconds: <span class="offset-time">...</span>
+            </p>
+          </div>
+          <div class="inner">
+            <h1>How does it work?</h1>
+            <p>
+              When you are familiar with <a href="//momentjs.com/" target="_blank">moment.js</a>, its very easy!
+            </p>
+            <pre style="text-align: left;">&lt;script src="//coordinatedjs.com/now.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  $moment().format();
+&lt;/script&gt;</pre>
+            <p>
+              coordinated.js introduces a new global variable, <code>$moment</code>, which behaves similiar to <code>moment</code>, but with a fixed offset calculated when your document is loaded. Only time-parsing is not supported by <code>$moment(...)</code> - use <code>moment(...)</code> instead. Bonus: <code>$moment.utc()</code> works as expected.
+            </p>
+            <p>
+              In modern browsers, <code>window.performance</code> can be used to obtain the load delay and coordinated.js adds it to the offset. This allowes to get a real accurate server-time synchronized in the browser.
+            </p>
+          </div>
+          <div class="inner">
+            <h1>Available services</h1>
+            coordinatedjs.com provides three services free for you:
+            <ul style="text-align: left">
+              <li><code>//coordinatedjs.com/now.js</code> Requires moment.js.</li>
+              <li><code>//coordinatedjs.com/full.js</code> Provides moment.min.js (latest version) and coordinated.js</li>
+              <li><code>//coordinatedjs.com/full-with-locales.js</code> Provides moment-with-locales.min.js (latest version) and coordinated.js</li>
+            </ul>
+          </div>
+          <div class="inner">
+            <h1>Reliability and limitations</h1>
+            <p>
+              In cases where you wont rely on the time settings in the client' browser, you are able to rely on coordinated.js. With <code>window.performance</code> the accuracy is about one quarter of a second. In other cases it depends on the lag caused by slow and/or instable internet connections which cannot be determined. Maybe a SNTP implementing javascript class could calculate the offset in such cases, but I want to keep the service simple and easy to use.
+            </p>
+            <p>
+              The SSL certificate is shipped by <a href="//cacert.org/" target="_blank">CAcert</a>.
+            </p>
+          </div>
+          <div>
+            <h1>Availability and terms of use</h1>
+            <p>
+              For now, this service is is hosted on a virtual machine. I hope the machine will never die.
+            </p>
+            <p>
+              Feel free to use coordinated.js in any of your projects without any fee. You don't need to - but I recommend to - provide a notice that you use the services of coordinated.js.
+            </p>
+            <h3>Disclaimer</h3>
+            <p>
+<strong>The service is provided "as is" and the author disclaims all warranties with regard to this service including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this service.</strong></p>
+          </div>
+          <div class="inner">
+            <h1>Contribute</h1>
+            <p>
+              <a href="//github.com/zurborg/coordinatedjs" target="_blank">Fork me on github</a>.
+            </p>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+              <p>&copy 2014 David Zurborg. <a href="/impress.txt">Impress</a>. Template by <a href="//twitter.com/mdo" target="_blank">@mdo</a>.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/full.js"></script>
+    <script src="/js/app.min.js"></script>
+  </body>
+</html>
