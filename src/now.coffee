@@ -6,7 +6,6 @@
 		if window.performance?
 			poffset -= (window.performance.now() / 1000)
 		unixtime = parseFloat('%UNIXTIME%') * 1000;
-		console.log "unixtime = #{unixtime}, poffset = #{poffset}"
 		unixtime -= poffset
 		servertime = moment(unixtime)
 		clienttime = moment()
