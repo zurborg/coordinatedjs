@@ -1,5 +1,5 @@
 %.js: %.coffee
-	coffee -c $<
+	coffee -bc $<
 
 %.min.js: %.js
 	minify $< > $@
