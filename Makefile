@@ -1,15 +1,21 @@
-%.js: %.coffee
-	coffee -bc $<
+lib/%.js: src/%.coffee
+	coffee -bsc < $? > $@
 
-%.min.js: %.js
-	minify $< > $@
+lib/%.min.js: lib/%.js
+	minify $? > $@
 
-%.min.css: %.css
-	minify $< > $@
+public/js/%.js: src/%.coffee
+	coffee -bsc < $? > $@
+
+public/js/%.min.js: public/js/%.js
+	minify $? > $@
+
+public/css/%.min.css: public/css/%.css
+	minify $? > $@
 
 .SECONDARY:
 
-all: now.min.js app.min.js
+all: lib/now.min.js public/js/app.min.js public/css/app.min.css
 
 clean:
-	-git clean -xdf .
+	-git clean -xdf

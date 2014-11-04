@@ -2,3 +2,6 @@
 stderr.log
 stdout.log
 ubic.log
+lib/*.js
+public/js
+public/css/*.min.css

@@ -4,7 +4,7 @@ use Time::HiRes qw(gettimeofday);
 
 our $VERSION = '0.1';
 
-my $nowminjs = 'src/now.min.js';
+my $nowminjs = 'lib/now.min.js';
 if (open my $fh, $nowminjs) {
     $nowminjs = join '' => <$fh>;
 } else {
