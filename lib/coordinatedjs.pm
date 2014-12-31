@@ -1,8 +1,11 @@
+use strict;
+use warnings;
 package coordinatedjs;
+# ABSTRACT: coordinatedjs
 use Dancer ':syntax';
 use Time::HiRes qw(gettimeofday);
 
-our $VERSION = '0.1';
+# VERSION
 
 my $nowminjs = 'lib/now.min.js';
 if (open my $fh, $nowminjs) {
