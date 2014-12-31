@@ -8,7 +8,7 @@ use Time::HiRes qw(gettimeofday);
 # VERSION
 
 my $nowminjs = 'lib/now.min.js';
-if (open my $fh, $nowminjs) {
+if (open my $fh, '<', $nowminjs) {
     $nowminjs = join '' => <$fh>;
 } else {
     die "$nowminjs: $!\n";
@@ -39,7 +39,7 @@ sub nowphp {
 }
 
 my $momentminjs = 'moment/min/moment.min.js';
-if (open my $fh, $momentminjs) {
+if (open my $fh, '<', $momentminjs) {
     $momentminjs = join '' => <$fh>;
 } else {
     die "$momentminjs: $!\n";
@@ -50,7 +50,7 @@ sub fulljs {
 };
 
 my $momentlocalejs = 'moment/min/moment-with-locales.min.js';
-if (open my $fh, $momentlocalejs) {
+if (open my $fh, '<', $momentlocalejs) {
     $momentlocalejs = join '' => <$fh>;
 } else {
     die "$momentlocalejs: $!\n";
