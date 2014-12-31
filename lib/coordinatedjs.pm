@@ -24,8 +24,8 @@ sub nowphp {
     content_type 'application/php';
     local $_ = "$nowminjs";
     my $expr = quotemeta '%UNIXTIME%';
-    my $time = '<?php printf("%0.03f", microtime(true)); ?>';
-    s{$expr}{$time}e;
+    my $repl = '<?php printf("%0.03f", microtime(true)); ?>';
+    s{$expr}{$repl}e;
     $_;
 }
 
