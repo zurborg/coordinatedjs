@@ -20,6 +20,12 @@ sub nowjs {
     $_;
 };
 
+sub unixtime {
+    content_type 'text/javascript';
+    header 'Timing-Allow-Origin' => '*';
+    sprintf '%s(%0.03f)' => param('callback'), Time::HiRes::time;
+}
+
 sub nowphp {
     content_type 'application/php';
     local $_ = "$nowminjs";
@@ -55,6 +61,7 @@ get '/now.js' => \&nowjs;
 get '/now.php' => \&nowphp;
 get '/full.js' => \&fulljs;
 get '/full-with-locales.js' => \&full_with_localesjs;
+get '/unixtime' => \&unixtime;
 get '/' => sub { template 'index' };
 
 true;
