@@ -1,21 +1,40 @@
+targets=lib/now.min.js public/js/app.min.js public/css/app.min.css
+
+all: $(targets)
+
+public/js/%.js: lib/%.js
+	mv $< $@
+
+%.min.css: %.css
+	minify $< > $@~
+	mv $@~ $@
+
+%.min.js: %.js
+	minify $< > $@~
+	mv $@~ $@
+
 lib/%.js: src/%.coffee
-	coffee -bsc < $? > $@
+	mkdir -p lib
+	coffee -sc < $< > $@~
+	mv $@~ $@
 
-lib/%.min.js: lib/%.js
-	minify $? > $@
+bin/%: lib/%.js
+	mkdir -p bin
+	@echo "#!/usr/bin/env node" > $@~
+	cat $< >> $@~
+	chmod +x $@~
+	mv $@~ $@
 
-public/js/%.js: src/%.coffee
-	coffee -bsc < $? > $@
-
-public/js/%.min.js: public/js/%.js
-	minify $? > $@
-
-public/css/%.min.css: public/css/%.css
-	minify $? > $@
-
-.SECONDARY:
-
-all: lib/now.min.js public/js/app.min.js public/css/app.min.css
+%.json: %.yml
+	yaml2json $< > $@~
+	mv $@~ $@
 
 clean:
-	-git clean -xdf
+	git clean -xdf
+
+install: all
+	npm install -g .
+
+.PHONY: all clean install
+
+.SECONDARY:
