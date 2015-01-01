@@ -24,18 +24,12 @@
 
     @$moment.offset = calculateOffset @moment, clienttime, '%UNIXTIME%'
 
-    @$moment.set = (unixtime) =>
-      clienttime = @$moment()
-      @$moment.offset = calculateOffset @moment, clienttime, unixtime
-      @$moment.synced = clienttime
-
     @$moment.utc = () =>
       @moment.utc().add @$moment.offset, 'milliseconds'
 
     @$moment.synced = @$moment()
 
     @$moment.sync = ($, success) =>
-      callback = '$moment.set'
       timeStart = now()
       oldOffset = @$moment.offset
       $.ajax
