@@ -5,14 +5,11 @@
 
   else
 
-    perf = @performance
-    now = perf.now
-
     clienttime = @moment?()
 
-    if perf.timing?
-      a = perf.timing.requestStart
-      b = perf.timing.responseStart
+    if window.performance?.timing?
+      a = window.performance.timing.requestStart
+      b = window.performance.timing.responseStart
       d = (b - a) / 2
       clienttime = @moment(a + d)
 
@@ -30,16 +27,16 @@
     @$moment.synced = @$moment()
 
     @$moment.sync = ($, success) =>
-      timeStart = now()
+      timeStart = window.performance.now()
       oldOffset = @$moment.offset
       $.ajax
         url: "//localhost:3000/unixtime"
         dataType: 'jsonp'
         cache: false
         beforeSend: =>
-          timeStart = now()
+          timeStart = window.performance.now()
         success: (servertime) =>
-          d = (now() - timeStart) / 2
+          d = (window.performance.now() - timeStart) / 2
           clienttime = @moment().add -d, 'milliseconds'
           newOffset = calculateOffset @moment, clienttime, servertime
           @$moment.offset = newOffset
