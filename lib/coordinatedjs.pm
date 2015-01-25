@@ -18,7 +18,7 @@ sub nowjs {
     content_type 'text/javascript';
     local $_ = "$nowminjs";
     my $expr = quotemeta '%UNIXTIME%';
-    my $time = sprintf '%0.03f' => Time::HiRes::time;
+    my $time = sprintf '%0.06f' => Time::HiRes::time;
     s{$expr}{$time}e;
     $_;
 };
@@ -26,7 +26,7 @@ sub nowjs {
 sub unixtime {
     content_type 'text/javascript';
     header 'Timing-Allow-Origin' => '*';
-    sprintf '%s(%0.03f)' => param('callback'), Time::HiRes::time;
+    sprintf '%s(%0.06f)' => param('callback'), Time::HiRes::time;
 }
 
 sub nowphp {
