@@ -6,6 +6,7 @@
   else
 
     clienttime = @moment?()
+    servertime = parseFloat '%UNIXTIME%'
 
     if window.performance?.timing?
       a = window.performance.timing.requestStart
@@ -19,7 +20,7 @@
     @$moment = () =>
       @moment().add @$moment.offset, 'milliseconds'
 
-    @$moment.offset = calculateOffset @moment, clienttime, '%UNIXTIME%'
+    @$moment.offset = calculateOffset @moment, clienttime, servertime
 
     @$moment.utc = () =>
       @moment.utc().add @$moment.offset, 'milliseconds'
