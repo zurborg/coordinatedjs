@@ -1,0 +1,22 @@
+#!/bin/sh
+
+v() {
+	pwd=$(pwd)
+	echo "### $pwd> $@"
+	$@
+}
+
+v cd $(dirname -- $0) && \
+v git clean -xdf && \
+v git reset --hard master && \
+v git submodule update --init --recursive && \
+v cd moment && \
+v git clean -xdf && \
+v git reset --hard master && \
+v git pull origin master && \
+v git checkout master && \
+v cd .. && \
+v git submodule update && \
+v make -B all && \
+v git status --porcelain && \
+echo "### done"
