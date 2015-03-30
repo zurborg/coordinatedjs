@@ -14,13 +14,22 @@ if (open my $fh, '<', $nowminjs) {
     die "$nowminjs: $!\n";
 }
 
+sub _rpl {
+    my ($str, %map) = @_;
+    foreach my $key (keys %map) {
+        my $K = quotemeta uc $key;
+        my $V = $map{$key} || '';
+        $str = ($str =~ s{% $K %}{$V}gexr);
+    }
+    return $str;
+}
+
 sub nowjs {
     content_type 'text/javascript';
-    local $_ = "$nowminjs";
-    my $expr = quotemeta '%UNIXTIME%';
+    my $str = "$nowminjs";
+    my $expr = quotemeta '';
     my $time = sprintf '%0.06f' => Time::HiRes::time;
-    s{$expr}{$time}e;
-    $_;
+    _rpl($str, UNIXTIME => $time, SITEURL => config->{siteurl});
 };
 
 sub unixtime {
@@ -31,11 +40,10 @@ sub unixtime {
 
 sub nowphp {
     content_type 'application/php';
-    local $_ = "$nowminjs";
+    my $str = "$nowminjs";
     my $expr = quotemeta '%UNIXTIME%';
     my $repl = '<?php printf("%0.03f", microtime(true)); ?>';
-    s{$expr}{$repl}e;
-    $_;
+    _rpl($str, UNIXTIME => $repl, SITEURL => config->{siteurl});
 }
 
 my $momentminjs = 'moment/min/moment.min.js';

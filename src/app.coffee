@@ -15,13 +15,11 @@ window.jQuery $ ->
       @text moment().format myformat
     jQ '.utc-time', ->
       @text $moment.utc().format myformat
+    jQ '.offset-time', ->
+      @text parseInt($moment.offset())
   func()
-  jQ '.offset-time', ->
-    @text $moment.offset
   every 0.999, func
 
   every 5, ->
-    $moment.sync $, ->
-      jQ '.offset-time', ->
-        @text $moment.offset
+    $moment.sync $
 
