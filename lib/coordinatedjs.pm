@@ -17,9 +17,7 @@ if (open my $fh, '<', $nowminjs) {
 sub _rpl {
     my ($str, %map) = @_;
     foreach my $key (keys %map) {
-        my $K = quotemeta uc $key;
-        my $V = $map{$key} || '';
-        $str = ($str =~ s{% $K %}{$V}gexr);
+        $str =~ s{%\Q$key\E%}{$map{$key}||''}ge;
     }
     return $str;
 }
