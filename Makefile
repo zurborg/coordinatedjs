@@ -1,5 +1,7 @@
 targets=lib/now.min.js public/js/app.min.js public/css/app.min.css
 
+coffee ?= /usr/local/bin/coffee
+
 all: $(targets)
 
 public/js/%.js: lib/%.js
@@ -15,7 +17,7 @@ public/js/%.js: lib/%.js
 
 lib/%.js: src/%.coffee
 	mkdir -p lib
-	coffee -sc < $< > $@~
+	$(coffee) -sc < $< > $@~
 	mv $@~ $@
 
 bin/%: lib/%.js
