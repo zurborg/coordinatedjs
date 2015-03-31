@@ -16,7 +16,7 @@ v git reset --hard master && \
 v git pull origin master && \
 v git checkout master && \
 v cd .. && \
-v git submodule update && \
+v git submodule update --recursive --remote && \
 v make -B all && \
 v git status --porcelain && \
 echo "### done"
