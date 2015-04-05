@@ -14,7 +14,6 @@ v git submodule foreach git clean -xdf && \
 v git submodule foreach git reset --hard master && \
 v git submodule foreach git pull origin master && \
 v git submodule foreach git checkout master && \
-v git commit -am Update_state_of_submodules && \
 v make -B all && \
 v git status --porcelain && \
 echo "### done"
